@@ -20,42 +20,44 @@ class _BuildListState extends State<BuildList> {
       itemCount: contactsBox.length,
       itemBuilder: (context, index) {
         final contact = contactsBox.getAt(index) as Contact;
+        print('----ssssss${contactsBox.length}sssss-----');
         // if (contact is Contact)
-          return Card(
-            elevation: 2,
-            color: Colors.white,
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundImage: AssetImage('assets/images/download.png'),
-                radius: 25,
-              ),
-              title: Text(
-                '${contact.firstName} ${contact.lastName}',
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              ),
-              subtitle: Text(
-                '${contact.phoneNo}',
-              ),
-              onTap: () {
-                showDetails(context, contact);
-              },
-              trailing: IconButton(
-                icon: Icon(Icons.delete),
-                onPressed: () {
-                  //for (int i = index; i < contactsBox.length; ++i)
-                  // contactsBox.deleteAt(i);
-                  setState(() {
-                    contactsBox.deleteAt(index);
-                  });
-                  print("-----------Deleted: $index ${contactsBox.length}----------");
-                },
+        return Card(
+          elevation: 2,
+          color: Colors.white,
+          child: ListTile(
+            leading: CircleAvatar(
+              backgroundImage: AssetImage('assets/images/download.png'),
+              radius: 25,
+            ),
+            title: Text(
+              '${contact.firstName} ${contact.lastName}',
+              style: TextStyle(
+                fontSize: 18,
               ),
             ),
-          );
+            subtitle: Text(
+              '${contact.phoneNo}',
+            ),
+            onTap: () {
+              showDetails(context, contact);
+            },
+            trailing: IconButton(
+              icon: Icon(Icons.delete),
+              onPressed: () {
+                //for (int i = index; i < contactsBox.length; ++i)
+                // contactsBox.deleteAt(i);
+                setState(() {
+                  contactsBox.deleteAt(index);
+                });
+                print(
+                    "-----------Deleted: $index ${contactsBox.length}----------");
+              },
+            ),
+          ),
+        );
         // else
-          // return Card();
+        // return Card();
       },
     );
   }

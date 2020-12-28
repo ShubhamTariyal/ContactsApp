@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
-import 'loginScreen.dart';
+import 'splashScreen.dart';
 import 'modals/contact.dart';
 
 void main() async {
@@ -25,7 +25,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'App',
-      home: Login(),
+      home: SplashScreen(),
     );
   }
 }

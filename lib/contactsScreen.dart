@@ -14,18 +14,22 @@ class Contacts extends StatefulWidget {
 }
 
 class _ContactsState extends State<Contacts> {
-
   void _addContact(BuildContext context) async {
     Contact newContact = await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => NewContact()),
     );
-    setState(() {
-      Hive.box('contacts').add(newContact);
-    });
+    print("-----------In ContactsScrren/_addContact() Adding Contaact.. ${newContact == null}------");
+    if (newContact is Contact) {
+      print("$newContact ${newContact == null}");
+      setState(() {
+        Hive.box('contacts').add(newContact);
+      });
+    }
   }
 
   void _showDetails(BuildContext context, Contact contact) {
+    // if(contact is Contact)
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => Detail(contact)),

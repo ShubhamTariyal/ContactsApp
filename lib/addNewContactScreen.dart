@@ -45,48 +45,59 @@ class _NewContactState extends State<NewContact> {
   @override
   Widget build(BuildContext context) {
     final widgetSize = MediaQuery.of(context).size;
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Add Contact',
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          margin: EdgeInsets.only(
-            top: widgetSize.height * 0.05,
-            left: widgetSize.width * 0.1,
+    return WillPopScope(
+      onWillPop: ()async{
+        print("Before Pop");
+        Navigator.pop(
+          context,
+          null,
+        );
+        print("After Pop");
+        return Future.value(true);
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Add Contact',
           ),
-          width: widgetSize.width * 0.8,
-          // color: Colors.red,
-          child: Column(
-            children: [
-              InputText(
-                title: 'First Name',
-                txtController: firstNameTxtController,
-                targetFocusNode: lastNameFocusNode,
-              ),
-              InputText(
-                title: 'Last Name',
-                txtController: lastNameTxtController,
-                widgetFocusNode: lastNameFocusNode,
-                targetFocusNode: phoneNoFocusNode,
-              ),
-              InputText(
-                title: 'Phone No.',
-                txtController: phoneNoTxtController,
-                widgetFocusNode: phoneNoFocusNode,
-                targetFocusNode: emailFocusNode,
-              ),
-              InputText(
-                title: 'Email',
-                txtController: emailTxtController,
-                widgetFocusNode: emailFocusNode,
-                next: false,
-                callback: () => _addNewContact(context),
-              ),
-              CustomButton(() => _addNewContact(context), 'Add'),
-            ],
+        ),
+        body: SingleChildScrollView(
+          child: Container(
+            margin: EdgeInsets.only(
+              top: widgetSize.height * 0.05,
+              left: widgetSize.width * 0.1,
+            ),
+            width: widgetSize.width * 0.8,
+            // color: Colors.red,
+            child: Column(
+              children: [
+                InputText(
+                  title: 'First Name',
+                  txtController: firstNameTxtController,
+                  targetFocusNode: lastNameFocusNode,
+                ),
+                InputText(
+                  title: 'Last Name',
+                  txtController: lastNameTxtController,
+                  widgetFocusNode: lastNameFocusNode,
+                  targetFocusNode: phoneNoFocusNode,
+                ),
+                InputText(
+                  title: 'Phone No.',
+                  txtController: phoneNoTxtController,
+                  widgetFocusNode: phoneNoFocusNode,
+                  targetFocusNode: emailFocusNode,
+                ),
+                InputText(
+                  title: 'Email',
+                  txtController: emailTxtController,
+                  widgetFocusNode: emailFocusNode,
+                  next: false,
+                  callback: () => _addNewContact(context),
+                ),
+                CustomButton(() => _addNewContact(context), 'Add'),
+              ],
+            ),
           ),
         ),
       ),
