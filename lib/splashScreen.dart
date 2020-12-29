@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
         seconds: 1,
         microseconds: 500,
       ),
-      () => Navigator.push(
+      () => Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => Login()),
       ),
@@ -27,26 +27,39 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          alignment: Alignment(0.0, 0.6),
-          height: double.infinity,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/images.png'),
-              fit: BoxFit.fitWidth,
+      body: Container(
+        // alignment: Alignment(0.0, 0.6),
+        // height: double.infinity,
+        // width: double.infinity,
+        color: Colors.blue,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Contacts App",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 50,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-          child: Text(
-            "Developed by Shubham Tariyal",
-            style: TextStyle(
-              color: Colors.red,
-              // backgroundColor: Colors.blue,
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
+            Container(
+              width: double.infinity,
+              child: Image(
+                image: AssetImage('assets/images/images.png'),
+                fit: BoxFit.fill,
+              ),
             ),
-          ),
+            Text(
+              "Developed by:\nShubham Tariyal",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 35,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
       ),
     );

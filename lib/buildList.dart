@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
+import 'toast.dart';
 import 'modals/contact.dart';
 
 class BuildList extends StatefulWidget {
@@ -50,6 +51,7 @@ class _BuildListState extends State<BuildList> {
                 setState(() {
                   contactsBox.deleteAt(index);
                 });
+                toast('Deleted Contact');
                 print(
                     "-----------Deleted: $index ${contactsBox.length}----------");
               },
