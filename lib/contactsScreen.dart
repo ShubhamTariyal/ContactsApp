@@ -6,6 +6,7 @@ import 'package:hive/hive.dart';
 import 'buildList.dart';
 import 'detailsScreen.dart';
 import 'addNewContactScreen.dart';
+import 'loginScreen.dart';
 import 'modals/contact.dart';
 
 class Contacts extends StatefulWidget {
@@ -17,11 +18,10 @@ class _ContactsState extends State<Contacts> {
   void _addContact(BuildContext context) async {
     Contact newContact = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => NewContact()),
+      MaterialPageRoute(
+          builder: (context) => NewContact()),
     );
-    print("-----------In ContactsScrren/_addContact() Adding Contaact.. ${newContact == null}------");
     if (newContact is Contact) {
-      print("$newContact ${newContact == null}");
       setState(() {
         Hive.box('contacts').add(newContact);
       });
@@ -49,16 +49,27 @@ class _ContactsState extends State<Contacts> {
                 appBar: AppBar(
                   title: Text('Contacts'),
                   actions: [
-                    Container(
-                      margin: EdgeInsets.only(right: 20),
-                      color: Colors.lightBlue,
-                      child: IconButton(
-                        onPressed: () {
-                          _addContact(context);
-                        },
-                        icon: Icon(Icons.add),
-                      ),
-                    ),
+                    Row(
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.logout),
+                          onPressed: () => Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => Login()),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(right: 20),
+                          color: Colors.lightBlue,
+                          child: IconButton(
+                            onPressed: () {
+                              _addContact(context);
+                            },
+                            icon: Icon(Icons.add),
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
                 body: BuildList(_showDetails),

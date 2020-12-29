@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
 import 'toast.dart';
+import 'alertDialog.dart';
 import 'modals/contact.dart';
 
 class BuildList extends StatefulWidget {
@@ -21,8 +22,6 @@ class _BuildListState extends State<BuildList> {
       itemCount: contactsBox.length,
       itemBuilder: (context, index) {
         final contact = contactsBox.getAt(index) as Contact;
-        print('----ssssss${contactsBox.length}sssss-----');
-        // if (contact is Contact)
         return Card(
           elevation: 2,
           color: Colors.white,
@@ -46,20 +45,28 @@ class _BuildListState extends State<BuildList> {
             trailing: IconButton(
               icon: Icon(Icons.delete),
               onPressed: () {
-                //for (int i = index; i < contactsBox.length; ++i)
-                // contactsBox.deleteAt(i);
-                setState(() {
-                  contactsBox.deleteAt(index);
-                });
-                toast('Deleted Contact');
-                print(
-                    "-----------Deleted: $index ${contactsBox.length}----------");
+                showAlertDialog(
+                    context: context,
+                    buttonList: [
+                      FlatButton(
+                        child: Text('Delete'),
+                        onPressed: () {
+                          setState(() {
+                            contactsBox.deleteAt(index);
+                            Navigator.pop(context);
+                            toast('Deleted Contact');
+                          });
+                        },
+                      ),
+                    ],
+                    content: 'Delete Contact?');
+                // setState(() {
+                //   contactsBox.deleteAt(index);
+                // });
               },
             ),
           ),
         );
-        // else
-        // return Card();
       },
     );
   }

@@ -1,3 +1,4 @@
+//Validation is not done yet
 import 'package:flutter/material.dart';
 
 import 'contactsScreen.dart';
@@ -23,12 +24,12 @@ class _LoginState extends State<Login> {
       toast('Field cannot be empty!');
       return;
     }
-    Navigator.push(
-      //pushReplacement
+    Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => Contacts()),
+      MaterialPageRoute(
+          settings: RouteSettings(name: 'ContactScreen'),
+          builder: (context) => Contacts()),
     );
-    print('$usrname $password Login');
   }
 
   @override
@@ -71,78 +72,3 @@ class _LoginState extends State<Login> {
     );
   }
 }
-
-// Text(
-//   "UserName",
-//   style: TextStyle(fontSize: 20),
-// ),
-// TextField(
-//   style: TextStyle(fontSize: 19),
-//   decoration: InputDecoration(
-//     // labelText: 'Username',
-//     contentPadding: EdgeInsets.symmetric( horizontal: 10),
-//     focusedBorder: OutlineInputBorder(
-//       borderSide: BorderSide(
-//         color: Colors.blueGrey,
-//         width: 2,
-//       ),
-//     ),
-//     enabledBorder: OutlineInputBorder(
-//       borderSide: BorderSide(
-//         color: Colors.grey,
-//         width: 2,
-//       ),
-//     ),
-//   ),
-//   controller: usrnameTxtController,
-//   textInputAction: TextInputAction.next,
-//   onSubmitted: (_) {
-//     FocusScope.of(context).requestFocus(textFocusNode);
-//   },
-// ),
-// Container(
-//   margin: EdgeInsets.only(top: 19),
-// ),
-// Text(
-//   "Password",
-//   style: TextStyle(fontSize: 20),
-// ),
-// TextField(
-//   style: TextStyle(fontSize: 20),
-//   decoration: InputDecoration(
-//     // labelText: 'Username',
-//     contentPadding: EdgeInsets.symmetric( horizontal: 10),
-//     focusedBorder: OutlineInputBorder(
-//       borderSide: BorderSide(
-//         color: Colors.blueGrey,
-//         width: 2,
-//       ),
-//     ),
-//     enabledBorder: OutlineInputBorder(
-//       borderSide: BorderSide(
-//         color: Colors.grey,
-//         width: 2,
-//       ),
-//     ),
-//   ),
-//   controller: passwordTxtController,
-//   textInputAction: TextInputAction.done,
-//   focusNode: passwordFocusNode,
-//   onSubmitted: (_) => login(context),
-// ),
-// Container(
-//   margin: EdgeInsets.only(
-//     top: 30,
-//   ),
-//   height: 40,
-//   width: double.infinity,
-//   child: RaisedButton(
-//     child: Text(
-//       'Login',
-//       style: TextStyle(fontSize: 18),
-//     ),
-//     onPressed: () => login(context),
-//     color: Colors.blue,
-//     textColor: Colors.white,
-//   ),
-// )

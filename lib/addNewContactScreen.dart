@@ -1,3 +1,4 @@
+import 'package:Contacts/alertDialog.dart';
 import 'package:flutter/material.dart';
 
 import 'modals/contact.dart';
@@ -46,13 +47,33 @@ class _NewContactState extends State<NewContact> {
   Widget build(BuildContext context) {
     final widgetSize = MediaQuery.of(context).size;
     return WillPopScope(
-      onWillPop: ()async{
-        print("Before Pop");
-        Navigator.pop(
-          context,
-          null,
-        );
-        print("After Pop");
+      onWillPop: () {
+        if (firstNameTxtController.text.isEmpty &&
+            lastNameTxtController.text.isEmpty &&
+            phoneNoTxtController.text.isEmpty &&
+            emailTxtController.text.isEmpty) {
+          Navigator.pop(
+            context,
+            null,
+          );
+        } else {
+          showAlertDialog(
+              context: context,
+              buttonList: [
+                FlatButton(
+                  child: Text('Yes'),
+                  onPressed: () {
+                    // int c = 0;
+                    // Navigator.popUntil(context, (_)=> c++ >= 2);
+                    Navigator.popUntil(
+                      context,
+                      ModalRoute.withName('ContactScreen'),
+                    );
+                  },
+                ),
+              ],
+              content: 'Discard Changes?');
+        }
         return Future.value(true);
       },
       child: Scaffold(
@@ -104,70 +125,3 @@ class _NewContactState extends State<NewContact> {
     );
   }
 }
-// crossAxisAlignment: CrossAxisAlignment.start,
-// children: [
-//   Text(
-//     "First Name",
-//     style: TextStyle(fontSize: 18),
-//   ),
-//   TextField(
-//     controller: firstNameTxtController,
-//     textInputAction: TextInputAction.next,
-//     onSubmitted: (_) {
-//       FocusScope.of(context).requestFocus(lastNameFocusNode);
-//     },
-//   ),
-//   Text(
-//     "Last Name",
-//     style: TextStyle(fontSize: 18),
-//   ),
-//   TextField(
-//     controller: lastNameTxtController,
-//     textInputAction: TextInputAction.next,
-//     focusNode: lastNameFocusNode,
-//     onSubmitted: (_) {
-//       FocusScope.of(context).requestFocus(phoneNoFocusNode);
-//     },
-//   ),
-//   Container(
-//     margin: EdgeInsets.only(top: 20),
-//   ),
-//   Text(
-//     "Phone No.",
-//     style: TextStyle(fontSize: 18),
-//   ),
-//   TextField(
-//     controller: phoneNoTxtController,
-//     textInputAction: TextInputAction.next,
-//     focusNode: phoneNoFocusNode,
-//     onSubmitted: (_) {
-//       FocusScope.of(context).requestFocus(emailFocusNode);
-//     },
-//   ),
-//   Text(
-//     "Email: ",
-//     style: TextStyle(fontSize: 18),
-//   ),
-//   TextField(
-//     controller: emailTxtController,
-//     textInputAction: TextInputAction.done,
-//     focusNode: emailFocusNode,
-//     onSubmitted: (_) => _addNewContact(),
-//   ),
-//   Container(
-//     margin: EdgeInsets.only(
-//       top: 30,
-//     ),
-//     height: 40,
-//     width: double.infinity,
-//     child: RaisedButton(
-//       child: Text(
-//         'Done',
-//         style: TextStyle(fontSize: 18),
-//       ),
-//       onPressed: _addNewContact,
-//       color: Colors.blue,
-//       textColor: Colors.white,
-//     ),
-//   ),
-// ],
