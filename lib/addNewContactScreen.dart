@@ -1,10 +1,10 @@
-import 'package:Contacts/alertDialog.dart';
 import 'package:flutter/material.dart';
 
 import 'modals/contact.dart';
 import 'Widgets/button.dart';
 import 'Widgets/inputText.dart';
-import 'toast.dart';
+import 'utils/toast.dart';
+import 'utils/alertDialog.dart';
 
 class NewContact extends StatefulWidget {
   @override

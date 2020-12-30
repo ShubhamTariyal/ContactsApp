@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
-import 'toast.dart';
-import 'alertDialog.dart';
+import 'utils/toast.dart';
+import 'utils/alertDialog.dart';
 import 'modals/contact.dart';
 
 class BuildList extends StatefulWidget {
@@ -60,9 +60,6 @@ class _BuildListState extends State<BuildList> {
                       ),
                     ],
                     content: 'Delete Contact?');
-                // setState(() {
-                //   contactsBox.deleteAt(index);
-                // });
               },
             ),
           ),

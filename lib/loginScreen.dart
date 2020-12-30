@@ -1,10 +1,10 @@
-//Validation is not done yet
+//Validation is implemented yet
 import 'package:flutter/material.dart';
 
 import 'contactsScreen.dart';
 import 'Widgets/button.dart';
 import 'Widgets/inputText.dart';
-import 'toast.dart';
+import 'utils/toast.dart';
 
 class Login extends StatefulWidget {
   @override
